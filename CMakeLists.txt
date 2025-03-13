@@ -8,10 +8,10 @@ set(CMAKE_CXX_EXTENSIONS Off)
 
 #Include + Lib
 include_directories(
-    "C:/Users/U307797/OneDrive - L3Harris - GCCHigh/Documents/Projects/include"
+    "/include"
     "${CMAKE_SOURCE_DIR}/include")
 link_directories(
-    "C:/Users/U307797/OneDrive - L3Harris - GCCHigh/Documents/Projects/lib")
+    "/lib")
 
 #Include .cpp files in directory
 file(GLOB SOURCES 
@@ -31,7 +31,7 @@ enable_testing()
 #Copy SFML DLLs to build directory
 add_custom_command(TARGET SFML_Test POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    "C:/Users/U307797/OneDrive - L3Harris - GCCHigh/Documents/Projects/bin/sfml-system-3.dll"
-    "C:/Users/U307797/OneDrive - L3Harris - GCCHigh/Documents/Projects/bin/sfml-window-3.dll"
-    "C:/Users/U307797/OneDrive - L3Harris - GCCHigh/Documents/Projects/bin/sfml-graphics-3.dll"
+    "/sfml-system-3.dll"
+    "/sfml-window-3.dll"
+    "/sfml-graphics-3.dll"
     $<TARGET_FILE_DIR:SFML_Test>)
