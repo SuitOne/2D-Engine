@@ -3,9 +3,9 @@
 #include "../include/engine.hpp"
 
 Engine::Engine()
-    : renderer(nullptr) {
-    
-}
+    : renderer(nullptr), 
+    deltaTime(sf::Time::Zero),
+    fps(1000) {}
 
 void Engine::mainLoop(){
     // Create the window, initialize renderer
@@ -13,6 +13,9 @@ void Engine::mainLoop(){
     renderWindow.setVerticalSyncEnabled(true);
     renderWindow.setKeyRepeatEnabled(false);
     renderer = new Renderer(&renderWindow);
+
+    // Create deltaTime clock
+    sf::Clock deltaTimeClock;
     
     // Run the program as long as the window is open
     while (Engine::renderWindow.isOpen())
@@ -31,6 +34,12 @@ void Engine::mainLoop(){
             }
         }
 
+        // Rendering
         renderer->drawFrame();
+
+        // Clock deltatime
+        deltaTime = deltaTimeClock.restart();
+        deltaTime.asMilliseconds() == 0 ? fps = 1000 : fps = 1000 / deltaTime.asMilliseconds();
+        std::cout << "DeltaTime: " << deltaTime.asMilliseconds() << " FPS: " << fps << std::endl;
     }
 }
