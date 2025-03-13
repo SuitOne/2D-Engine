@@ -6,8 +6,9 @@ class Engine{
     public:
         Renderer* renderer;
         sf::RenderWindow renderWindow;
+        sf::Time deltaTime;
+        int fps;
 
         Engine();
-        void boot();
         void mainLoop();
 };
